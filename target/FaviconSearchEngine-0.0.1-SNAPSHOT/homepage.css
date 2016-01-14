@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.divpanel {
+  margin-top: 50px;
+}
+#enginename{
+	font-family: "Comic Sans MS", cursive, sans-serif;/*"Times New Roman", Times, serif;*/
+	font-size:xx-large;
+	color:"#333333";
+	/*padding-left: 100px;*/
+}
+#imgList{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	border-spacing: 50px;
+	list-style-type:none;
+}
+#resultheader{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
