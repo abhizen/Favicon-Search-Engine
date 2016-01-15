@@ -15,8 +15,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This class retrieves and returns list of favicon url 
+ * from database matching given input url prefix.
+ * */
 public class FaviconUrlDao {
 	private final MongoCollection<Document> faviconCollection;
+	private final static String urlCol = "url";
+	private final static String fav_urlCol = "fav_url";
+	private final static String timestampCol = "created";
+	private final static String timestampFormat = "yyyy-MM-dd HH:mm:ss";
 	
 	public FaviconUrlDao(final MongoDatabase faviconDb){
 		faviconCollection = faviconDb.getCollection("UrlToFavicon");
@@ -25,8 +33,8 @@ public class FaviconUrlDao {
 	public List<String> findFaviconByUrl(String url){
 		List<String> favUrl = null;
 		
-		Bson filter =  new Document("url",new Document("$regex",url));
-		Bson projection = new Document("fav_url",1)
+		Bson filter =  new Document(urlCol,new Document("$regex",url));
+		Bson projection = new Document(fav_urlCol,1)
 						.append("_id", 0);
 		
 		List<Document> faviconLinkList = faviconCollection.find(filter)
@@ -38,7 +46,7 @@ public class FaviconUrlDao {
 		else{
 			favUrl = new ArrayList();
 			for(Document doc :faviconLinkList){
-				favUrl.add(doc.getString("fav_url"));
+				favUrl.add(doc.getString(fav_urlCol));
 			}
 			return favUrl;
 		}
@@ -47,11 +55,11 @@ public class FaviconUrlDao {
 	public void insertUrltoFaviconMapping(String url,String favicon){
 		Timestamp stamp = new Timestamp(System.currentTimeMillis());
 		Date date = new Date(stamp.getTime());
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat(timestampFormat);
 		
-		Document urlToFaviconMapping = new Document("url", url)
-                .append("fav_url", favicon)
-                .append("created", format.format(date));
+		Document urlToFaviconMapping = new Document(urlCol, url)
+                .append(fav_urlCol, favicon)
+                .append(timestampCol, format.format(date));
 		faviconCollection.insertOne(urlToFaviconMapping);
 	}
 }

@@ -2,6 +2,8 @@ package org.search.process;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
+/*Favicon Processor creates new favicon url and validates it.
+ * */
 public class FaviconProcessor {
 	private static FaviconProcessor instance = null;
 	private final static String faviconURL = "/favicon.ico";

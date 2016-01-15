@@ -11,6 +11,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class WebsiteLinksDao {
 private final MongoCollection<Document> webUrlCollection;
+private final static String urlCol = "url";
 	
 	public WebsiteLinksDao(final MongoDatabase faviconDb){
 		webUrlCollection = faviconDb.getCollection("UrlToFavicon");
@@ -19,8 +20,8 @@ private final MongoCollection<Document> webUrlCollection;
 	public List<String> findWebsiteUrl(String url){
 		List<String> webUrl = null;
 		
-		Bson filter =  new Document("url",new Document("$regex",url));
-		Bson projection = new Document("url",1)
+		Bson filter =  new Document(urlCol,new Document("$regex",url));
+		Bson projection = new Document(urlCol,1)
 						.append("_id", 0);
 		
 		List<Document> webUrlList = webUrlCollection.find(filter)
@@ -32,7 +33,7 @@ private final MongoCollection<Document> webUrlCollection;
 		else{
 			webUrl = new ArrayList();
 			for(Document doc :webUrlList){
-				webUrl.add(doc.getString("url"));
+				webUrl.add(doc.getString(urlCol));
 			}
 			return webUrl;
 		}

@@ -1,18 +1,14 @@
-/**
- * 
- */
-
 $(document).ready(function(){
 	
-	//var url = "http://localhost:8080/FaviconSearchEngine/favicon/v1/rest/getUrl";
 	var url = "https://cryptic-shelf-6360.herokuapp.com/favicon/v1/rest/getUrl";
-	//var webLinksUrl = "http://localhost:8080/FaviconSearchEngine/favicon/v1/rest/webUrl";
 	var webLinksUrl = "https://cryptic-shelf-6360.herokuapp.com/favicon/v1/rest/webUrl";
 	var submitbutton = $("#submit");
 	var textbox = $("#link");
 	var link = "";
 	var faviconlist = null;
 	var dispUrlLinks = null;
+	
+	textbox.autocomplete({delay:800});
 	
 	textbox.autocomplete({
 		source: function( request, response ) {
@@ -24,7 +20,7 @@ $(document).ready(function(){
 		response(dispUrlLinks);
 		
 	}
-	//declaration
+
 	function createLink(callback){
 		link = url+"/"+textbox.val();
 		return callback(link,ajaxcall);
@@ -35,7 +31,6 @@ $(document).ready(function(){
 	}
 	
 	function showfav(url,callback){
-		//textbox.autocomplete('disable');
 		return callback(url,flow);
 	}
 	
@@ -97,7 +92,7 @@ $(document).ready(function(){
 					"<td><img src='"+elements[i]+"'></td><tr>");
 	    	
 		}
-		//textbox.autocomplete('enable');
+		
 		return callback;
 	}
 	

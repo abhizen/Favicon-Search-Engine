@@ -10,8 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/*This class calls methods to retrieve url from database 
+ * and if not present creates new favicon url. Also calls dao class
+ * to retrieve web url.
+ * */
 public class FaviconController {
-	//private static final String url = "mongodb://localhost";
 	private static final String url = "mongodb://abhinitk:zodiac@ds045785.mongolab.com:45785/abhizen";
 	private final FaviconUrlDao faviconUrlDao;
 	private final WebsiteLinksDao websiteLinkDao;
@@ -52,7 +55,7 @@ public class FaviconController {
 		List<String> faviconUrl = new ArrayList();
 		String favUrl = processorInst.getFaviconURL(url);
 		
-		if(favUrl!=null /*&& isValidUrl(favUrl)*/){
+		if(favUrl!=null){
 			faviconUrlDao.insertUrltoFaviconMapping(url, favUrl);
 			faviconUrl.add(favUrl);
 			return faviconUrl;
