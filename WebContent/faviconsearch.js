@@ -5,7 +5,7 @@
 $(document).ready(function(){
 	
 	//var url = "http://localhost:8080/FaviconSearchEngine/favicon/v1/rest/getUrl";
-	var url = "https://cryptic-shelf-6360.herokuapp.com/favicon/v1/rest/getUrl/";
+	var url = "https://cryptic-shelf-6360.herokuapp.com/favicon/v1/rest/getUrl";
 	//var webLinksUrl = "http://localhost:8080/FaviconSearchEngine/favicon/v1/rest/webUrl";
 	var webLinksUrl = "https://cryptic-shelf-6360.herokuapp.com/favicon/v1/rest/webUrl";
 	var submitbutton = $("#submit");
