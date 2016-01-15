@@ -14,13 +14,11 @@ import com.google.gson.Gson;
 public class FaviconSearchService {
 	private static FaviconController controller = new FaviconController();
 	private final static String errorMessage = "Service unavailable, please try again";
-	private final static String url = "url";
-	private final static String webUrl = "webUrl";
 	
 	@GET
 	@Path("/getUrl/{url}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getFaviconUrl(@PathParam(url) String url){
+	public String getFaviconUrl(@PathParam("url") String url){
 		
 		List<String> faviconUrl = null;
 		try{
@@ -39,7 +37,7 @@ public class FaviconSearchService {
 	@GET
 	@Path("/webUrl/{webUrl}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getWebUrl(@PathParam(webUrl) String webUrl){
+	public String getWebUrl(@PathParam("webUrl") String webUrl){
 		List<String> websiteUrl = null;
 		try{	
 			websiteUrl = controller.getWebsiteUrl(webUrl);
