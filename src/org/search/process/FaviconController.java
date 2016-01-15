@@ -11,14 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FaviconController {
-	private static final String url = "mongodb://localhost";
+	//private static final String url = "mongodb://localhost";
+	private static final String url = "mongodb://abhinitk:zodiac@ds045785.mongolab.com:45785/abhizen";
 	private final FaviconUrlDao faviconUrlDao;
 	private final WebsiteLinksDao websiteLinkDao;
 	private final FaviconProcessor processorInst = FaviconProcessor.getInstance();
 	
 	public FaviconController(){
 		final MongoClient mongoClient = new MongoClient(new MongoClientURI(url));
-        final MongoDatabase faviconDatabase = mongoClient.getDatabase("UrltoFavicon");
+        final MongoDatabase faviconDatabase = mongoClient.getDatabase("abhizen");
         
         faviconUrlDao = new FaviconUrlDao(faviconDatabase);
         websiteLinkDao = new WebsiteLinksDao(faviconDatabase);

@@ -20,6 +20,7 @@ public class FaviconSearchService {
 	@Path("/getUrl/{url}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getFaviconUrl(@PathParam("url") String url){
+		System.out.println("I am inside get method1");
 		List<String> faviconUrl = null;
 		try{
 			
