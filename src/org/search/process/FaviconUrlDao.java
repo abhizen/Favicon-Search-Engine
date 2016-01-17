@@ -25,6 +25,7 @@ public class FaviconUrlDao {
 	private final static String fav_urlCol = "fav_url";
 	private final static String timestampCol = "created";
 	private final static String timestampFormat = "yyyy-MM-dd HH:mm:ss";
+	private final static int limit = 20;
 	
 	public FaviconUrlDao(final MongoDatabase faviconDb){
 		faviconCollection = faviconDb.getCollection("UrlToFavicon");
@@ -37,8 +38,10 @@ public class FaviconUrlDao {
 		Bson projection = new Document(fav_urlCol,1)
 						.append("_id", 0);
 		
+		
 		List<Document> faviconLinkList = faviconCollection.find(filter)
 										.projection(projection)
+										.limit(limit)
 										.into(new ArrayList<Document>());
 		
 		if(faviconLinkList==null || faviconLinkList.isEmpty())

@@ -9,9 +9,14 @@ import org.bson.conversions.Bson;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+/**
+ * This class retrieves and returns list of website url 
+ * from database matching given input url prefix.
+ * */
 public class WebsiteLinksDao {
 private final MongoCollection<Document> webUrlCollection;
 private final static String urlCol = "url";
+private final static int limit = 20;
 	
 	public WebsiteLinksDao(final MongoDatabase faviconDb){
 		webUrlCollection = faviconDb.getCollection("UrlToFavicon");
@@ -26,6 +31,7 @@ private final static String urlCol = "url";
 		
 		List<Document> webUrlList = webUrlCollection.find(filter)
 										.projection(projection)
+										.limit(limit)
 										.into(new ArrayList<Document>());
 		
 		if(webUrlList==null || webUrlList.isEmpty())
