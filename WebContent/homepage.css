@@ -17,3 +17,6 @@
 #resultheader{
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
+.autocomplete_completionListElement {
+	background-color : white;
+}
