@@ -17,6 +17,6 @@
 #resultheader{
 	font-family: "Comic Sans MS", cursive, sans-serif;
 }
-.autocomplete_completionListElement {
+.ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all{
 	background-color : white;
 }
